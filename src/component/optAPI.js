@@ -30,10 +30,9 @@ export function loadSexChart(data,col,text){
 }
 
 // eslint-disable-next-line
-function loadPieChart(data){
-    return <PieChart width={500} height={300} data={data} cx={150} cy={150} labelLine={false}/>
+export function loadPieChart(data,text){
+    return <PieChart width={300} height={300} title={text} data={data} cx={150} cy={150} labelLine={false}/>
 }
-
 /*
 * ========================================================================
 * 컴포넌트 데이터 양식 선언부
@@ -49,14 +48,14 @@ export function getSexData(){
 
 export function getAgeData(){
     return [
-        {name: '1-17', age:0, fill: getRandomColor()},
-        {name: '18-24', age:0,fill: getRandomColor()},
-        {name: '25-29', age:0,fill: getRandomColor()},
-        {name: '30-34', age:0,fill: getRandomColor()},
-        {name: '35-39', age:0,fill: getRandomColor()},
-        {name: '40-49', age:0,fill: getRandomColor()},
-        {name: '50+', age:0,fill: getRandomColor()},
-        {name: 'unknow', age:0,fill: getRandomColor()}];
+        {name: '1-17', value:0, fill: getRandomColor()},
+        {name: '18-24', value:0,fill: getRandomColor()},
+        {name: '25-29', value:0,fill: getRandomColor()},
+        {name: '30-34', value:0,fill: getRandomColor()},
+        {name: '35-39', value:0,fill: getRandomColor()},
+        {name: '40-49', value:0,fill: getRandomColor()},
+        {name: '50+', value:0,fill: getRandomColor()},
+        {name: 'unknow', value:0,fill: getRandomColor()}];
 }
 
 export function getDateData(){
@@ -130,7 +129,7 @@ export function setupData(json,date) {
         //선택한 시간만 출력
         if (createDate === date) {
             sex[getIndexSex(json[idx].sex)].value += 1;
-            age[getIndexAge(json[idx].age)].age += 1;
+            age[getIndexAge(json[idx].age)].value += 1;
             var time = ((timestamp.getHours() < 10) ? "0" : "") + timestamp.getHours()+"시";
             //Population, Visits 체크
             var check = 1;
@@ -160,9 +159,12 @@ export function setupData(json,date) {
 
     //메서드 생성
     ReactDOM.render(<h2>{date}</h2>, document.getElementById('date'));
-    ReactDOM.render(loadAgeChart(age, "age", "Age Chart"), document.getElementById('age'));
-    ReactDOM.render(loadSexChart(sex, "value", "Sex Chart"), document.getElementById('sex'));
+    //ReactDOM.render(loadAgeChart(age, "age", "Age Chart"), document.getElementById('age'));
+    //ReactDOM.render(loadSexChart(sex, "value", "Sex Chart"), document.getElementById('sex'));
+    ReactDOM.render(loadPieChart(age, "Age Chart"), document.getElementById('age'));
+    ReactDOM.render(loadPieChart(sex, "Sex Chart"), document.getElementById('sex'));
     ReactDOM.render(loadLineChart(line, "Visits Flow population Chart"), document.getElementById('line'));
+
 }
 
 export function getIndexSex(data) {

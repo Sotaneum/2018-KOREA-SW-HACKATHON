@@ -10,20 +10,18 @@ function getRamdomColor() {
     })('');
 }
 
-function renderCustomizedLabel({cx, cy, midAngle, innerRadius, outerRadius, percent }) {
-    const RADIAN = Math.PI / 180;
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
+function renderCustomizedLabel({cx, cy, percent, name, fill,index }) {
+    const x = cx+90;
+    const y = cy+(index * 20)-90;
+    const text = name.replace("-","~");
     return (
-        <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {`${(percent * 100).toFixed(0)}%`}
+        <text x={x} y={y} fill={fill} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            {text+` ${(percent * 100).toFixed(0)}%`}
         </text>
     );
 }
 
-function createPie(data, cx, cy,labelLine,Color=null,index) {
+function createPie(data, cx, cy,labelLine,Color=null) {
     if (Color == null) {
         Color = getRamdomColor();
     }
@@ -34,8 +32,8 @@ function createPie(data, cx, cy,labelLine,Color=null,index) {
     }
     return <Pie
         data={data}
-        cx={cx}
-        cy={cy}
+        cx={cx/2}
+        cy={cy/2+cy/4}
         labelLine={labelLine}
         label={renderCustomizedLabel}
         outerRadius={80}
@@ -52,6 +50,7 @@ class optPieChart extends Component {
     render() {
         return (
             <div className="optPieChart">
+                {this.props.title}
                 <PieChart width={this.props.width} height={this.props.height}>
                     {createPie(this.props.data,this.props.cx,this.props.cy,this.props.labelLine)}
                 </PieChart>

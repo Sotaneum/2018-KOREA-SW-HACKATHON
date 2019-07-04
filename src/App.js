@@ -6,9 +6,9 @@ import * as api from './component/optAPI';
 //파이차트( 나이,성별 ) ,라인차트(방문자수 유동인구수)
 class App extends Component {
     getData = async () => {
-        const info = await Promise.all([api.getJSON()]);
-        var data=info[0].data;
-        api.setupDate(data);
+        var url = window.location.href.split("/?url=");
+        const info = await Promise.all([api.getJSON((url.length === 2)?url[1]:null)]);
+        api.setupDate(info[0].data);
     }
     render() {
         this.getData();

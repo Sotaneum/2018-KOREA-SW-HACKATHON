@@ -85,8 +85,11 @@ export function getRandomColor() {
 * ========================================================================
 * */
 
-export function getJSON(){
-    var data=axios.get('http://duration.digimoon.net/dev/Hackathon/test2.json');
+export function getJSON(url='http://duration.digimoon.net/dev/Hackathon/test2.json'){
+    if(url==null || url===""){
+        url='http://duration.digimoon.net/dev/Hackathon/test2.json'
+    }
+    var data=axios.get(url);
     return data;
 }
 
@@ -193,11 +196,14 @@ export function getIndexAge(data) {
 }
 
 export function getEnters(json){
+    return (json.is_entered===1)?true:false;
+    /*
+    // next json 확인
     if(json.is_entered===1){
         return true;
     }else if(json.next==null){
         return false;
     }else{
         return getEnters(json.next);
-    }
+    }*/
 }

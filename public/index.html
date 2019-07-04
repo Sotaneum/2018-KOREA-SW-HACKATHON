@@ -49,4 +49,63 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  function initSize(){
+      var width = window.innerWidth;
+      if(width <800){
+          $("#sex").css("float","");
+
+          $("#age").css("float","");
+
+          $("#panel").css("width","");
+          $("#panel").css("left","");
+          $("#panel").css("position","");
+
+          $("#date").css("width","100%");
+
+          $("#date_panel").css("width","100%");
+          $("#date_panel").css("float","");
+
+          $(".optList ul").css("height","50px");
+
+          $(".optLineChart").css("width","100%");
+
+          $("#copyright").css("position","");
+          $("#copyright").css("top","");
+          $("#copyright").css("width","100%");
+          $("#copyright").css("text-align","center");
+          $("#copyright").css("left","");
+      }else{
+          $("#sex").css("float","left");
+
+          $("#age").css("float","left");
+
+          $("#panel").css("width","900px");
+          $("#panel").css("left","calc(50% - 450px)");
+          $("#panel").css("position","relative");
+
+          $("#date").css("width","100%");
+
+          $("#date_panel").css("width","200px");
+          $("#date_panel").css("float","left");
+
+          $(".optList ul").css("height","631px");
+
+          $(".optLineChart").css("width","600px");
+
+          $("#copyright").css("position","absolute");
+          $("#copyright").css("top","860px");
+          $("#copyright").css("width","400px");
+          $("#copyright").css("text-align","center");
+          $("#copyright").css("left","calc(50% - 200px)");
+      }
+  }
+  window.onresize=function(){
+      initSize();
+  };
+  window.onload = function () {
+      setTimeout(initSize, 1000);
+  };
+</script>
 </html>

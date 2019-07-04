@@ -32,7 +32,7 @@ function createPie(data, cx, cy,labelLine,Color=null) {
     }
     return <Pie
         data={data}
-        cx={cx/2}
+        cx={cx/2+10}
         cy={cy/2+cy/4}
         labelLine={labelLine}
         label={renderCustomizedLabel}
@@ -50,10 +50,12 @@ class optPieChart extends Component {
     render() {
         return (
             <div className="optPieChart">
+                <center>
                 {this.props.title}
                 <PieChart width={this.props.width} height={this.props.height}>
                     {createPie(this.props.data,this.props.cx,this.props.cy,this.props.labelLine)}
                 </PieChart>
+                </center>
             </div>
         );
     }

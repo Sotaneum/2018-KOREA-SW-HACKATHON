@@ -44,17 +44,19 @@ function createLine(Type, DataKey,idx,Color=null){
 class optLineChart extends Component {
     render() {
         return (
-            <div className="optLineChart">
+            <div className="optLineChart" style={{overflow:"scroll", width:this.props.width, overflowY:"hidden"}}>
                 <p align="center">{this.props.text}</p>
-                <LineChart width={this.props.width} height={this.props.height} data={this.props.data}
-                           margin={this.props.margin}>
-                    <XAxis dataKey={getTitle(this.props.data)}/>
-                    <YAxis/>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <Tooltip/>
-                    <Legend/>
-                    {createLines(this.props.data)}
-                </LineChart>
+                <center>
+                    <LineChart width={this.props.width-20} height={this.props.height-40} data={this.props.data}
+                               margin={this.props.margin}>
+                        <XAxis dataKey={getTitle(this.props.data)}/>
+                        <YAxis/>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <Tooltip/>
+                        <Legend/>
+                        {createLines(this.props.data)}
+                    </LineChart>
+                </center>
             </div>
         );
     }

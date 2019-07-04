@@ -1,111 +1,343 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Hackathon</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-    <div id="panel">
-      <div id="date_panel"></div>
-      <div id="data_panel">
-        <div id="date"></div>
-        <div id="age"></div>
-        <div id="sex"></div>
-        <div id="line"></div>
-      </div>
+    <title></title>
+</head>
+<body>
+    <div id="header">
+        <h1>스마트록</h1>
     </div>
-    <div id="copyright">
-      <h5>Copyrightⓒ2018 DONGGUN All rights reserved.</h5>
+    <div id="title">
+        <h2 style="display: inline-block;">무료</h2> <h2 style="display: inline-block;color:#cb396a;">유동인구 파악</h2> <h2 style="display: inline-block;">플랫폼 대시보드</h2>
     </div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div id="time"></div>
+    <div id="contact">
+        <center>
+            <div id="outer_piechart" class="piechart">
+            <div id="piechart" style="max-width: 350px; height: 500px;"></div>
+                <div class="info" id="piechart_info" style="max-width:120px;">
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+                </div>
+            </div>
+            <div id="outer_piechart2" class ="piechart">
+                <div id="piechart2" style="max-width: 350px; height: 500px;"></div>
+                <div class="info" id="piechart2_info" style="max-width:120px;">
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-  function initSize(){
-      var width = window.innerWidth;
-      if(width <800){
-          $("#sex").css("float","");
+                </div>
+            </div>
+            <div id="curve_chart" style="max-width:900px; height: 500px"></div>
+        </center>
+    </div>
 
-          $("#age").css("float","");
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-          $("#panel").css("width","");
-          $("#panel").css("left","");
-          $("#panel").css("position","");
+      function drawChart(data) {
+          if(data==null) {
+              var data = google.visualization.arrayToDataTable([
+                  ['나이', '값'],
+                  ['10~20', 11],
+                  ['21~30', 2],
+                  ['31~40', 2],
+                  ['41~50', 2],
+                  ['51~60', 7]
+              ]);
+          }
+        var options = {
+            title: '나이별 유동 인구',
+            backgroundColor: '#2d313d',
+            legendTextStyle: {color: '#FFF'},
+            titleTextStyle: {color: '#FFF',fontSize:24}
+        };
 
-          $("#date").css("width","100%");
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-          $("#date_panel").css("width","100%");
-          $("#date_panel").css("float","");
-
-          $(".optList ul").css("height","50px");
-
-          $(".optLineChart").css("width","100%");
-
-          $("#copyright").css("position","");
-          $("#copyright").css("top","");
-          $("#copyright").css("width","100%");
-          $("#copyright").css("text-align","center");
-          $("#copyright").css("left","");
-      }else{
-          $("#sex").css("float","left");
-
-          $("#age").css("float","left");
-
-          $("#panel").css("width","900px");
-          $("#panel").css("left","calc(50% - 450px)");
-          $("#panel").css("position","relative");
-
-          $("#date").css("width","100%");
-
-          $("#date_panel").css("width","200px");
-          $("#date_panel").css("float","left");
-
-          $(".optList ul").css("height","631px");
-
-          $(".optLineChart").css("width","600px");
-
-          $("#copyright").css("position","absolute");
-          $("#copyright").css("top","860px");
-          $("#copyright").css("width","400px");
-          $("#copyright").css("text-align","center");
-          $("#copyright").css("left","calc(50% - 200px)");
+        chart.draw(data, options);
       }
-  }
-  window.onresize=function(){
-      initSize();
-  };
-  window.onload = function () {
-      setTimeout(initSize, 1000);
-  };
-</script>
+    </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart2(data) {
+          if (data == null) {
+              data = google.visualization.arrayToDataTable([
+                  ['성별', '값'],
+                  ['남자', 11],
+                  ['여자', 2],
+              ]);
+          }
+          var options = {
+              title: '성별 유동 인구',
+              backgroundColor: '#2d313d',
+              legendTextStyle: {color: '#FFF'},
+              titleTextStyle: {color: '#FFF',fontSize:24}
+          };
+
+          var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+          chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart3);
+
+      function drawChart3(data) {
+          if(data==null) {
+              data = google.visualization.arrayToDataTable([
+                  ['시간', '방문자 수', '유동 인구 수'],
+                  ['2004', 1000, 400],
+                  ['2005', 1170, 460],
+                  ['2006', 660, 1120],
+                  ['2007', 1030, 540]
+              ]);
+          }
+        var options = {
+            title: '유동인구 및 방문자 수',
+            curveType: 'function',
+            backgroundColor: '#2d313d',
+            legendTextStyle: {color: '#FFF'},
+            titleTextStyle: {color: '#FFF' ,fontSize:24},
+            hAxis: {textStyle:{color: '#FFF'}},
+            vAxis: {textStyle:{color: '#FFF'}},
+            legend: {position: 'bottom'},
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script>
+        var Wokring = false;
+        function getTestJSON(){
+            var json = [];
+            json.push({"date":"2017-08-20","data":[
+              {"male":1,"female":1,"10-20":1,"20-30":1,"30-40":1,"40-50":1,"50-60":1},
+                    {"male":1,"female":1,"10-20":1,"20-30":1,"30-40":1,"40-50":1,"50-60":1}
+            ]});
+            return json;
+        }
+        function getJSON(){
+            var json = [];
+            json.push({"date":"2017-08-20","data":[
+              {"male":0,"female":0,"10-20":0,"20-30":0,"30-40":0,"40-50":0,"50-60":0},
+              {"male":1,"female":3,"10-20":3,"20-30":1,"30-40":0,"40-50":0,"50-60":0},
+              {"male":2,"female":5,"10-20":5,"20-30":2,"30-40":0,"40-50":0,"50-60":0},
+              {"male":7,"female":4,"10-20":5,"20-30":4,"30-40":1,"40-50":0,"50-60":0},
+              {"male":9,"female":5,"10-20":9,"20-30":4,"30-40":1,"40-50":0,"50-60":0},
+              {"male":9,"female":7,"10-20":8,"20-30":7,"30-40":1,"40-50":0,"50-60":0},
+              {"male":9,"female":9,"10-20":8,"20-30":8,"30-40":2,"40-50":0,"50-60":0},
+              {"male":9,"female":11,"10-20":8,"20-30":10,"30-40":2,"40-50":0,"50-60":0},
+              {"male":9,"female":11,"10-20":8,"20-30":10,"30-40":2,"40-50":0,"50-60":0},
+              {"male":9,"female":11,"10-20":7,"20-30":11,"30-40":2,"40-50":0,"50-60":0},
+              {"male":9,"female":12,"10-20":7,"20-30":10,"30-40":4,"40-50":0,"50-60":0},
+              {"male":9,"female":13,"10-20":10,"20-30":10,"30-40":2,"40-50":0,"50-60":0},
+              {"male":10,"female":14,"10-20":9,"20-30":10,"30-40":3,"40-50":0,"50-60":0},
+              {"male":10,"female":15,"10-20":9,"20-30":10,"30-40":4,"40-50":0,"50-60":0},
+              {"male":11,"female":16,"10-20":10,"20-30":10,"30-40":4,"40-50":1,"50-60":0},
+              {"male":11,"female":18,"10-20":11,"20-30":10,"30-40":4,"40-50":1,"50-60":0},
+              {"male":13,"female":18,"10-20":11,"20-30":12,"30-40":5,"40-50":1,"50-60":0},
+              {"male":12,"female":21,"10-20":11,"20-30":15,"30-40":5,"40-50":1,"50-60":0},
+              {"male":12,"female":23,"10-20":10,"20-30":18,"30-40":5,"40-50":1,"50-60":0},
+              {"male":14,"female":24,"10-20":12,"20-30":20,"30-40":4,"40-50":1,"50-60":0},
+              {"male":15,"female":26,"10-20":14,"20-30":21,"30-40":5,"40-50":1,"50-60":0},
+              {"male":16,"female":28,"10-20":14,"20-30":23,"30-40":5,"40-50":1,"50-60":0},
+              {"male":16,"female":29,"10-20":14,"20-30":24,"30-40":5,"40-50":1,"50-60":0},
+              {"male":15,"female":30,"10-20":15,"20-30":24,"30-40":4,"40-50":1,"50-60":0},
+              {"male":15,"female":30,"10-20":15,"20-30":24,"30-40":4,"40-50":1,"50-60":0},
+              {"male":16,"female":29,"10-20":16,"20-30":23,"30-40":4,"40-50":1,"50-60":0},
+              {"male":15,"female":30,"10-20":16,"20-30":23,"30-40":4,"40-50":1,"50-60":0},
+              {"male":16,"female":31,"10-20":18,"20-30":23,"30-40":4,"40-50":1,"50-60":0},
+              {"male":17,"female":32,"10-20":20,"20-30":23,"30-40":4,"40-50":1,"50-60":0},
+              {"male":18,"female":33,"10-20":21,"20-30":24,"30-40":4,"40-50":1,"50-60":0},
+              {"male":19,"female":32,"10-20":19,"20-30":25,"30-40":4,"40-50":2,"50-60":0},
+              {"male":20,"female":33,"10-20":20,"20-30":27,"30-40":4,"40-50":1,"50-60":0},
+              {"male":20,"female":34,"10-20":20,"20-30":28,"30-40":4,"40-50":1,"50-60":0},
+              {"male":22,"female":34,"10-20":21,"20-30":29,"30-40":4,"40-50":1,"50-60":0},
+              {"male":22,"female":34,"10-20":23,"20-30":27,"30-40":4,"40-50":1,"50-60":1},
+              {"male":25,"female":32,"10-20":24,"20-30":26,"30-40":4,"40-50":1,"50-60":1},
+              {"male":27,"female":31,"10-20":24,"20-30":27,"30-40":4,"40-50":1,"50-60":1},
+              {"male":29,"female":31,"10-20":24,"20-30":28,"30-40":5,"40-50":1,"50-60":1},
+              {"male":31,"female":31,"10-20":23,"20-30":30,"30-40":6,"40-50":1,"50-60":1},
+              {"male":33,"female":31,"10-20":25,"20-30":30,"30-40":5,"40-50":2,"50-60":1},
+              {"male":36,"female":31,"10-20":27,"20-30":32,"30-40":5,"40-50":1,"50-60":1},
+              {"male":42,"female":30,"10-20":29,"20-30":35,"30-40":5,"40-50":1,"50-60":1},
+              {"male":46,"female":30,"10-20":30,"20-30":36,"30-40":7,"40-50":1,"50-60":1},
+              {"male":49,"female":31,"10-20":32,"20-30":39,"30-40":8,"40-50":1,"50-60":0},
+              {"male":49,"female":32,"10-20":34,"20-30":38,"30-40":7,"40-50":2,"50-60":0},
+              {"male":50,"female":32,"10-20":35,"20-30":38,"30-40":7,"40-50":2,"50-60":0},
+              {"male":55,"female":31,"10-20":38,"20-30":38,"30-40":7,"40-50":3,"50-60":0}
+            ]});
+            return json;
+        }
+        function getdate(addmsec){
+            var date = new Date(2017,8,27,14,27,40,0+addmsec);
+            return date;
+        }
+        function getRandomData(min,max){
+            return Math.floor((Math.random() * max) + min);
+        }
+        function createRandomData(json){
+            var random_persent=[];
+            var data = json[0]["data"];
+            for(var i=0;i<data.length;i++){
+                var persent = getRandomData(5,15);
+                var selData=data[i];
+                var sum = selData["male"]+selData["female"];
+                var avage = sum*persent/100;
+                random_persent.push(avage.toFixed(0));
+            }
+            return random_persent;
+        }
+        function getAgeData(data){
+            return google.visualization.arrayToDataTable([
+                  ['나이', '값'],
+                  ['10~20', data["10-20"]],
+                  ['21~30', data["20-30"]],
+                  ['31~40', data["30-40"]],
+                  ['41~50', data["40-50"]],
+                  ['51~60', data["50-60"]]
+              ]);
+        }
+        function getSexData(data){
+            return google.visualization.arrayToDataTable([
+                  ['성별', '값'],
+                  ['남자', data["male"]],
+                  ['여자', data["female"]]
+              ]);
+        }
+        function getLineData(random,json,json_idx,msec){
+            var data = new google.visualization.DataTable();
+            data.addColumn('string','time');
+            data.addColumn('number','방문자 수');
+            data.addColumn('number','유동 인구 수');
+            data.addRows(json_idx+1);
+
+            for(var i=0;i<=json_idx;i++){
+                var date = getdate(msec*i);
+                var seldata = json[0]["data"][i];
+                data.setCell(i,0,date.getMinutes()+":"+date.getSeconds());
+                data.setCell(i,1,random[i]);
+                data.setCell(i,2,seldata["female"]+seldata["male"]);
+            }
+            return data;
+        }
+        function getAgeInfoData(data){
+            return "<div class='info_item'><p>10~20 = </p><div id='age_10-20' class='age_info_value'>"+data["10-20"]+"</div></div>"+
+                "<div class='info_item'><p>21~30 = </p><div id='age_20-30' class='age_info_value'>"+data["20-30"]+"</div></div>"+
+                "<div class='info_item'><p>31~40 = </p><div id='age_30-40' class='age_info_value'>"+data["30-40"]+"</div></div>"+
+                "<div class='info_item'><p>41~50 = </p><div id='age_40-50' class='age_info_value'>"+data["40-50"]+"</div></div>"+
+                "<div class='info_item'><p>51~60 = </p><div id='age_50-60' class='age_info_value'>"+data["50-60"]+"</div></div>";
+        }
+        function getSexInfoData(data){
+            return "<div class='info_item'><p>남자 = </p><div id='sex_male' class='sex_info_value'>"+data["male"]+"</div></div>" +
+                "<div class='info_item'><p>여자 = </p><div id='sex_female' class='sex_info_value'>"+data["female"]+"</div></div>";
+        }
+        function setinfo(data,json_idx){
+            if(json_idx==0) {
+                $("#piechart_info").html(getAgeInfoData(data));
+            }else{
+                var keys = ["10-20","20-30","30-40","40-50","50-60"];
+                for(var i=0;i<keys.length;i++){
+                    var doc=$("#age_"+keys[i]);
+                    var oldData=doc[0].outerText;
+                    var newData=data[keys[i]];
+                    if(oldData!=newData) {
+                        doc[0].innerText = newData;
+                        doc.css("color", "#cb396a").delay(500).queue(function (next) {
+                            $(this).css('color', '#ffffff');
+                            next();
+                        });
+                    }
+                }
+            }
+        }
+        function setinfo2(data,json_idx){
+            if(json_idx==0)
+                $("#piechart2_info").html(getSexInfoData(data));
+            else{
+                var keys = ["male","female"];
+                for(var i=0;i<keys.length;i++){
+                    var doc=$("#sex_"+keys[i]);
+                    var oldData=doc[0].outerText;
+                    var newData=data[keys[i]];
+                    if(oldData!=newData){
+                        doc[0].innerText=newData;
+                        doc.css("color","#cb396a").delay(500).queue(function (next) {
+                            $(this).css('color','#ffffff');
+                            next();
+                        });
+                    }
+                }
+            }
+        }
+        var check_working = false;
+        var reset_working = false;
+        function run(msec,json){
+            var json_idx=0;
+            var time_msec=1;
+            var random_data=createRandomData(json);
+            //시간
+            var timeInterval = setInterval(()=>{
+                if(check_working==true || reset_working==true) {
+                    var date = getdate(time_msec * msec);
+                    time_msec++;
+                    var time = date.getFullYear() + "-" + (((date.getMonth() + 1) < 10) ? "0" : "") + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + (((date.getSeconds() + 1) < 10) ? "0" : "") + date.getSeconds();
+                    $("#time").html(time);
+                }
+            },msec);
+            //화면 데이터 변경
+            var datasetInterval = setInterval(()=>{
+                var seldata = json[0]["data"][json_idx];
+                if(check_working==true || reset_working==true) {
+                    //차트 그릭
+                    drawChart(getAgeData(seldata));
+                    drawChart2(getSexData(seldata));
+                    drawChart3(getLineData(random_data, json, json_idx, msec));
+                    //정보 그리기
+                    setinfo(seldata, json_idx);
+                    setinfo2(seldata, json_idx);
+                    json_idx++;
+                }
+                if (json[0]["data"].length==json_idx || check_working==false){
+                    clearInterval(timeInterval);
+                    clearInterval(datasetInterval);
+                    reset_working=false;
+                    check_working=false;
+                    time_msec=1;
+                }
+            },msec);
+        }
+        function reset(){
+            var json = getTestJSON();
+            check_working=false;
+            reset_working=true;
+            run(0.1,json);
+        }
+        function start(msec){
+            var json = getJSON();
+            check_working=true;
+            run(msec,json);
+        }
+        function startRun(msec,json){
+            check_working=true;
+            run(msec,json);
+        }
+        window.onload=function () {
+            reset();
+            //start(1000);
+        }
+
+    </script>
+
+</body>
+
 </html>

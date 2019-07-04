@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'SeoulNamsanB';
+    src: url('/dev/Hackathon/SeoulNamsanB.ttf');
+}
+@font-face {
+    font-family: 'SeoulNamsanL';
+    src: url('/dev/Hackathon/SeoulNamsanL.ttf');
+}
+p{
+  margin:0px;
+  padding: 0px;
+  margin-right:4px;
+  float:left;
+}
 div{
   -webkit-transition: all 1s; /* Safari */
   transition: all 1s;
@@ -5,9 +19,73 @@ div{
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  background-color:#2d313d;
+  color: #ffffff;
+  font-family: SeoulNamsanL;
+}
+
+#header{
+  margin-top: 20px;
+  font-size : 30px;
+  font-family: SeoulNamsanB;
+  color : #cb396a;
+  text-align: center;
+}
+
+#title{
+  font-size:10px;
+  text-align: center;
+}
+
+#time{
+  font-size: 30px;
+  text-align: center;
+}
+
+#outer_piechart2{
+  position: relative;
+  top: -54px;
+  z-index: -50;
+  background-color:#2d313d;
+}
+
+.piechart{
+  display: inline-block;
+  background-color:#2d313d;
 }
 
 #panel{
   text-align: center;
 }
+
+
+.info .info_item{
+  position: relative;
+  left:100px;
+  top:-240px;
+  text-align: left;
+}
+#curve_chart{
+  position: relative;
+  top: -195px;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    color: #ffffff;
+  }
+  50%{
+    color:#2d313d;
+  }
+  100% {
+    color: #ffffff;
+  }
+}
+
+.age_info_value{
+    -moz-transition: color 0.5s;
+    -webkit-transition: color 0.5s;
+    -o-transition: color 0.5s;
+    transition: color 0.5s;
+}
+

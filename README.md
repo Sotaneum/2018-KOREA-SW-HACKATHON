@@ -58,3 +58,8 @@
 
 - 2018-09-01
   - 해커톤 종료 및 내용 정리
+
+## Copyright
+
+- 비상업적 용도로 사용 가능하며 링크를 반드시 포함해주세요.
+- 문제가 되는 내용이 있다면 언제든지 [`issue`](https://github.com/Sotaneum/2018-KOREA-SW-HACKATHON/issues/new), [`Pull requests`](https://github.com/Sotaneum/2018-KOREA-SW-HACKATHON/compare) 부탁드립니다.

@@ -20,14 +20,3 @@ def jsons():
         data += ',"next":'+jsons()
     data += '}'
     return data
-
-data="["
-for idx in range(0,99999):
-    if idx!=0:
-        data+=","
-    data+=jsons()
-data+="]"
-
-f = open("D:/3. Project/test2.json", 'w')
-f.write(data)
-f.close()

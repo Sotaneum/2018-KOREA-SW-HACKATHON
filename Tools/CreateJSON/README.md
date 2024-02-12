@@ -3,6 +3,7 @@
 [![poster](../assets/poster.jpg)](https://onoffmix.com/event/144376)
 
 ## Team
+
 - 개발몽키즈
   - Leader : [`현운용`](https://github.com/soronto3603)
   - Member : [`류동준`](https://github.com/rdj94), [`이동건`](https://github.com/Sotaneum), `박건우`
@@ -28,5 +29,3 @@
 
 - 테스트 데이터 생성, Python
   - [CreateJSON](./CreateJSON/README.md)
-
-

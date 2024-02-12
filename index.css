@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'SeoulNamsanB';
-    src: url('/dev/Hackathon/SeoulNamsanB.ttf');
+    src: url('./assets/SeoulNamsanB.ttf');
 }
 @font-face {
     font-family: 'SeoulNamsanL';
-    src: url('/dev/Hackathon/SeoulNamsanL.ttf');
+    src: url('./assets/SeoulNamsanL.ttf');
 }
 p{
   margin:0px;

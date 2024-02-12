@@ -1,6 +1,6 @@
 # 제5회 대한민국 SW융합 해커톤 대회
 
-[![poster](../assets/poster.jpg)](https://onoffmix.com/event/144376)
+[![poster](../../assets/poster.jpg)](https://onoffmix.com/event/144376)
 
 ## Team
 
@@ -24,8 +24,3 @@
     f.write(data)
     f.close()
     ```
-
-## Role
-
-- 테스트 데이터 생성, Python
-  - [CreateJSON](./CreateJSON/README.md)

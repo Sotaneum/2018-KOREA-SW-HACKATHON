@@ -3,6 +3,7 @@
 [![poster](./assets/poster.jpg)](https://onoffmix.com/event/144376)
 
 ## Team
+
 - 개발몽키즈
   - Leader : [`현운용`](https://github.com/soronto3603)
   - Member : [`류동준`](https://github.com/rdj94), [`이동건`](https://github.com/Sotaneum), `박건우`
@@ -14,14 +15,14 @@
 ![system](./assets/system.png)
 
 - 소프트웨어 ( window-client, api-server ,web-server, web-client )
-- Python , NodeJS , ReactJS , PHP 
+- Python , NodeJS , ReactJS , PHP
 
 - [시연 영상](https://www.youtube.com/watch?v=7rYi9RYZ6FY)
 
 ## Role
 
 - 테스트 데이터 생성, Python
-  - [CreateJSON](./CreateJSON/README.md)
+  - [CreateJSON](./Tools/CreateJSON/README.md)
 - 프론트엔드
   - [jQuery](https://jquery.com/), [Google Charts](https://developers.google.com/chart), json, javascript, HTML, CSS
   - 프로젝트에서 통계를 볼 수 있는 화면 일부를 담당햇습니다.
@@ -29,7 +30,7 @@
   - 맡은 부분에서 일부인 [Preview](http://duration.digimoon.net/dev/hackathon/2018-sw-hackathon/)에서 사용해 볼 수 있습니다.
 
     [![preview](./assets/preview.png)](http://duration.digimoon.net/dev/hackathon/2018-sw-hackathon/)
-    
+
     - 테스트 함수
       - startRun(mesc , json data) : 갱신되는 속도와 json 데이터를 입력하면 화면에 출력합니다.
       - start(mesc) : 갱신되는 속도를 입력하면 임시로 들어가 있는 데이터를 불러와 보여줍니다.
